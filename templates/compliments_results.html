@@ -7,11 +7,13 @@ Compliments Results
 {% block content %}
 
 <!-- Your HTML code goes here! -->
-<p> Hi {users_name}! </p>
+<p> Hi {{users_name}}! </p>
 
 <ul>
-    (% if wants_complements == True %)
-        (% for num_complements in list_of_complements %)
-            <li>list_of_complements
-
+    {% if wants_compliments == "yes" %}
+        {% for num in list_of_compliments %}
+            <li> {{ num }} </li>
+        {% endfor %}
+    {% endif %}
+</ul>
 {% endblock %}

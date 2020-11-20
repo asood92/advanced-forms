@@ -57,7 +57,7 @@ def compliments_results():
     """Show the user some compliments."""
     context = {
         # TODO: Enter your context variables here.
-        list_of_compliments: list_of_compliments
+        "list_of_compliments": list_of_compliments
     }
 
     return render_template("compliments_results.html", **context)
@@ -81,6 +81,7 @@ def animal_facts():
     """Show a form to choose an animal and receive facts."""
 
     # TODO: Collect the form data and save as variables
+    <form
 
     context = {
         # TODO: Enter your context variables here for:
