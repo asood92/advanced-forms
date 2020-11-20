@@ -5,10 +5,9 @@ Compliments Results
 {% endblock %}
 
 {% block content %}
+<p> Hi {{ users_name }}! </p>
 
-<!-- Your HTML code goes here! -->
-<p> Hi {{users_name}}! </p>
-
+You are:
 <ul>
     {% if wants_compliments == "yes" %}
         {% for num in list_of_compliments %}
