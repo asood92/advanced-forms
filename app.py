@@ -70,28 +70,28 @@ def compliments_results():
 # ANIMAL FACTS ROUTE
 ################################################################################
 
-# animal_to_fact = {
-#     "koala": "Koala fingerprints are so close to humans' that they could taint crime scenes.",
-#     "parrot": "Parrots will selflessly help each other out.",
-#     "mantis shrimp": "The mantis shrimp has the world's fastest punch.",
-#     "lion": "Female lions do 90 percent of the hunting.",
-#     "narwhal": 'Narwhal tusks are really an "inside out" tooth.',
-# }
+animal_to_fact = {
+    "koala": "Koala fingerprints are so close to humans' that they could taint crime scenes.",
+    "parrot": "Parrots will selflessly help each other out.",
+    "mantis shrimp": "The mantis shrimp has the world's fastest punch.",
+    "lion": "Female lions do 90 percent of the hunting.",
+    "narwhal": 'Narwhal tusks are really an "inside out" tooth.',
+}
 
 
-# @app.route("/animal_facts")
-# def animal_facts():
-#     """Show a form to choose an animal and receive facts."""
+@app.route("/animal_facts")
+def animal_facts(animal=None):
+    """Show a form to choose an animal and receive facts."""
 
-#     # TODO: Collect the form data and save as variables
+    if animal in [None, ""]:
+        animal = request.args.get("animal")
 
-#     # TODO: Enter your context variables here for:
-#     # - the list of all animals (get from animal_to_fact)
-#     # - the chosen animal fact (may be None if the user hasn't filled out the form yet)
+    context = {
+        "animal_to_fact": animal_to_fact,
+        "animalName": animal,
+    }
 
-#     chosenAnimal = request.args.get("animal")
-#     context = {"animal_to_fact": animal_to_fact, "chosenFact": chosenFact}
-#     return render_template("animal_facts.html", **context)
+    return render_template("animal_facts.html", **context)
 
 
 ################################################################################
@@ -153,14 +153,15 @@ def image_filter():
 
         context = {
             "filter_types": filter_types,
-            image_url: "image_url",
+            "image_url": image_url",
         }
 
-        return render_template("image_filter.html", **context)
-
     else:  # if it's a GET request
-        context = {"filter_types": filter_types_dict.keys()}
-        return render_template("image_filter.html", **context)
+        context = {
+            "filter_types": filter_types_dict.keys(),
+        }
+
+    return render_template("image_filter.html", **context)
 
 
 ################################################################################
@@ -190,7 +191,9 @@ def gif_search():
         )
         gifs = json.loads(response.content).get("results")
 
-        context = {"gifs": gifs}
+        context = {
+            "gifs": gifs,
+        }
 
         # Uncomment me to see the result JSON!
         # pp.pprint(gifs)

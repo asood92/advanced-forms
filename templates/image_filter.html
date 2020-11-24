@@ -23,8 +23,8 @@ Image Filtering
 
                 <select name="filter_type">
 
-                    {% for item in "filter_types" %}
-                        <option value="">{{ item }}</option>
+                    {% for filter in "filter_types" %}
+                        <option value="{{ filter }}">{{ filter }}</option>
                     {% endfor %}
                 </select>
             </label>
@@ -40,7 +40,7 @@ Image Filtering
         Here is your filtered image:
     </p>
     <p>
-        <img>{{ img_url }}
+        <img src="{{img_url}}" alt="filtered image">
     </p>
 </section>
 {% endif %}

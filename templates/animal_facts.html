@@ -14,8 +14,8 @@ Animal Facts
             Which animal do you want facts on?
 
             <select name="animal">
-                (% for animal in "animal_to_fact" %)
-                    <option value="">{{ animal }}</option>
+                (% for animal in animal_to_fact.keys() %)
+                    <option value="{{ animal }}">{{ animal }}</option>
                 {% endfor %}
             </select>
         </label>
@@ -24,14 +24,14 @@ Animal Facts
     </fieldset>
 </form>
 
-{% if animal != "None" %}
+{% if animalName is not none or animalName is != ""  %}
 
     <section id="form_results">
         <p>
             Here is your animal fact:
         </p>
         <p>
-            <em>{{ chosenFact  }}</em>
+            <em>{{ animal_to_fact[animalName]  }}</em>
         </p>
     </section>
 {% endif %}
